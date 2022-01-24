@@ -514,7 +514,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-18T11:27:20.395Z",
+  "updatedAt": "2022-01-19T07:41:05.336Z",
   "devdoc": {
     "details": "Interface for the NFT Royalty Standard",
     "kind": "dev",
