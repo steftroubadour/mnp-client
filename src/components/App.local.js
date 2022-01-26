@@ -67,10 +67,6 @@ function App() {
     window.ethereum
       .request({ method: "net_version" })
       .then((_networkID) => {
-        if (_networkID !== MUMBAI_NETWORK_ID) {
-          setIsReadyToRender(true);
-          return;
-        }
         setNetworkId(_networkID);
       })
       .catch((err) => {
@@ -122,10 +118,11 @@ function App() {
     }
 
     setProvider(getProvider());
+    setIsReadyToRender(true);
   }, []);
 
   useEffect(() => {
-    if (!networkId || networkId !== MUMBAI_NETWORK_ID || !address) return;
+    if (!networkId || !address) return;
 
     setProvider(getProvider());
   }, [networkId, address]);
@@ -266,19 +263,6 @@ function App() {
 
   if (!isReadyToRender) {
     return <>{spinner}</>;
-  }
-
-  if (networkId !== MUMBAI_NETWORK_ID) {
-    return (
-      <div>
-        You must connect Metamask to mumbai network (polygon testnet) to play.
-        You can easily add it to Metamask clicking link at the bottom of{" "}
-        <a href="https://mumbai.polygonscan.com/#darkModaBtn">
-          mumbai explorer page
-        </a>
-        .
-      </div>
-    );
   }
 
   if (balance && balance.lt(ethers.utils.parseEther("0.1"))) {
